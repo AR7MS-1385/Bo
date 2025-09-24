@@ -1,0 +1,3 @@
+aiogram
+jdatetime
+python-dotenv
