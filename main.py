@@ -13,7 +13,7 @@ from aiogram.fsm.state import StatesGroup, State
 from store import Store   # کلاس Store
 
 # -------------------- تنظیمات --------------------
-API_TOKEN = "8242095365:AAGjxovlc1cl61nnrCvCh0_YyKmGodX9KKk"
+API_TOKEN = "8242095365:AAHYsAZ8dbsOo0rGWr9pl1dQu5rulT6dEIE"
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
