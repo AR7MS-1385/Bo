@@ -13,7 +13,7 @@ from aiohttp import web   # 👈 اضافه شد برای وب‌سرور ساد
 from store import Store   # کلاس Store
 
 # -------------------- تنظیمات --------------------
-API_TOKEN = "8242095365:AAHYsAZ8dbsOo0rGWr9pl1dQu5rulT6dEIE"
+API_TOKEN = "8242095365:AAFLAkNkNbdtmlCZbmUZtmgNVrmFEUo-KkQ"
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
