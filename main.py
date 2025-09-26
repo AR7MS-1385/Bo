@@ -1,6 +1,5 @@
 # main.py
 
-
 import os
 import asyncio
 import logging
@@ -9,6 +8,7 @@ from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
+from aiohttp import web   # 👈 اضافه شد برای وب‌سرور ساده
 
 from store import Store   # کلاس Store
 
@@ -174,8 +174,26 @@ async def delete_all_products(message: Message):
     store.delete_all_products()
     await message.answer("✅ همه محصولات حذف شدند.", reply_markup=main_kb)
 
+# -------------------- وب‌سرور ساده --------------------
+async def health(request):
+    return web.Response(text="ok")
+
+async def start_web_app():
+    port = int(os.getenv("PORT", "8000"))
+    app = web.Application()
+    app.add_routes([web.get("/health", health)])
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    print(f"Web server started on 0.0.0.0:{port}")
+
 # -------------------- اجرا --------------------
 async def main():
+    # راه‌اندازی وب‌سرور (برای Render)
+    await start_web_app()
+
+    # شروع polling ربات
     try:
         await dp.start_polling(bot)
     finally:
@@ -183,5 +201,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-
